@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_vertical"
+    android:orientation="vertical"
+    tools:context=".views.NewToast">
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_below="@id/tvTitleToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="clickme"/>
+    <ImageView
+        android:id="@+id/tvImageToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="99dp"
+        android:layout_centerHorizontal="true"
+        android:foreground="@mipmap/ic_launcher"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/tvTextToast"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/tvImageToast"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_height="24dp"
+        android:background="#ff0000"
+        android:textAlignment="center"
+        android:text="eric" />
+    <TextView
+        android:id="@+id/tvTitleToast"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvTextToast"
+        android:layout_marginTop="0dp"
+        android:layout_height="24dp"
+        android:background="#00ff00"
+        android:textAlignment="center"
+        android:text="alexluan" />
+
+</RelativeLayout>
