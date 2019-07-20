@@ -1,6 +1,7 @@
 package com.example.phoenixandroid.mainList;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,29 +16,26 @@ import com.example.phoenixandroid.R;
 
 public class MainCell extends FrameLayout {
     private Context mContext;
+    private ViewGroup parent;
+    private View view;
 
     private TextView nameTx;
     private Button btn;
 
     private onMainCellListener mOnMainCellListener;
 
-
-    public MainCell(Context context) {
-        this(context, null);
-    }
-
-    public MainCell(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public MainCell(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public MainCell(Context context, ViewGroup parent) {
+        super(context, null);
         this.mContext = context;
+        this.parent = parent;
         initPage();
     }
 
     private void initPage() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.cell_main, null);
+        view = LayoutInflater.from(mContext).inflate(R.layout.cell_main, parent, false);
+        if (parent != null) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_main, parent, false);
+        }
         nameTx = view.findViewById(R.id.name);
         btn = view.findViewById(R.id.btn);
 
@@ -61,17 +59,48 @@ public class MainCell extends FrameLayout {
             }
         });
 
+
         addView(view);
     }
 
+    public MainCell(Context context) {
+        super(context);
+        this.mContext = context;
+        initPage();
+    }
 
+    public MainCell(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.mContext = context;
+        initPage();
+    }
+
+    public MainCell(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        this.mContext = context;
+        initPage();
+    }
 
     public void setName(String name) {
         this.nameTx.setText(name);
     }
 
+    public void setBtnContext(String title) {
+        this.btn.setText(title);
+    }
+
     public void setOnMainCellListener(onMainCellListener listener) {
         this.mOnMainCellListener = listener;
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        /// 重新设置 cell 的高度 RecyclerView 不知道为啥，宽度不能撑起来 TODO: 有待学习
+        if (parent != null) {
+            int width = parent.getWidth();
+            view.setMinimumWidth(width);
+        }
+        super.dispatchDraw(canvas);
     }
 
     public interface onMainCellListener{

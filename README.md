@@ -57,3 +57,36 @@ Vue: TS or JS
 ## NFC
 
 ## 算法
+
+## Problem
+
+* 添加 ActionBar
+  1. 自定义 style:CustomBar 
+  2. 自定义 View 里面需要嵌套一个布局，不然 ‘match_content’ 无效，会有上线间隙。
+  3. 设置 padding 否者左右会有间隙。 parent.setPadding(0,0,0,0);
+            parent.setContentInsetsAbsolute(0,0);
+  ```java
+  ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowHomeEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(true);
+
+            if (Build.VERSION.SDK_INT >= 21) {
+                actionBar.setElevation(0);
+            }
+            View customView = getLayoutInflater().inflate(R.layout.custom_action_bar, null);
+//            View customView = ActivityChooserView.InnerLayout.inflate(this,R.layout.custom_action_bar, null);
+            actionBar.setDisplayShowHomeEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setCustomView(customView);
+            Toolbar parent =(Toolbar) customView.getParent();
+            parent.setPadding(0,0,0,0);//for tab otherwise give space in tab
+            parent.setContentInsetsAbsolute(0,0);
+        }
+        setContentView(R.layout.activity_recycler);
+  ```
+
+* RecyclerView 使用
