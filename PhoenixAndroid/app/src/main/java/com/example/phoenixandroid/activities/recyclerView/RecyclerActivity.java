@@ -13,13 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.phoenixandroid.BaseActivity;
 import com.example.phoenixandroid.R;
 import com.example.phoenixandroid.mainList.MainCell;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
-public class RecyclerActivity extends AppCompatActivity {
+public class RecyclerActivity extends BaseActivity {
 
     RecyclerView recyclerView = null;
     ArrayList<String> list;
@@ -27,25 +28,7 @@ public class RecyclerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(false);
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayShowHomeEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(true);
-
-            if (Build.VERSION.SDK_INT >= 21) {
-                actionBar.setElevation(0);
-            }
-            View customView = getLayoutInflater().inflate(R.layout.custom_action_bar, null);
-            actionBar.setDisplayShowHomeEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setCustomView(customView);
-            Toolbar parent =(Toolbar) customView.getParent();
-            parent.setPadding(0,0,0,0);//for tab otherwise give space in tab
-            parent.setContentInsetsAbsolute(0,0);
-        }
+        setNavTitle("RecyclerActivity");
         setContentView(R.layout.activity_recycler);
 
 
