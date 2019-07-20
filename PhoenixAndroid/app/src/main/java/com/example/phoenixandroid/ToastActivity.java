@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.example.phoenixandroid.bean.ToastBean;
 import com.example.phoenixandroid.views.NewToast;
 
-public class ToastActivity extends AppCompatActivity {
+public class ToastActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,8 @@ public class ToastActivity extends AppCompatActivity {
                 ToastMessage("title", "content");
             }
         });
+
+        setNavTitle("Toast");
     }
 
     private void ToastMessage(String titles, String messages) {

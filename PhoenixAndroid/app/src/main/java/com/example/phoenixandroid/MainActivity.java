@@ -23,7 +23,7 @@ import com.example.phoenixandroid.mainList.MainCell;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     ListView mainListView;
 
@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setNavTitle("MainActivity");
+
         /// 初始化界面控件
         mainListView = (ListView) findViewById(R.id.mainListView);
         this.list = new ArrayList<EventBean>();
@@ -49,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
         recycler.setName("recyclerView");
         recycler.setDes("recyclerView 描述");
         this.list.add(recycler);
+
+        EventBean tabbar = new EventBean();
+        tabbar.setId("tabbar");
+        tabbar.setName("tabbar");
+        tabbar.setDes("tabbar 描述");
+        this.list.add(tabbar);
 
         /// 添加相关事件
 
@@ -127,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == "recyclerView") {
             Intent intent = new Intent(MainActivity.this, RecyclerActivity.class);
+            MainActivity.this.startActivity(intent);
+        }
+        if (id == "tabbar") {
+            Intent intent = new Intent(MainActivity.this, MainTabActivity.class);
             MainActivity.this.startActivity(intent);
         }
     }

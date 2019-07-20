@@ -30,4 +30,14 @@ dependencies {
     // Recycler 三方适配器
     implementation group: 'com.github.CymChad', name: 'BaseRecyclerViewAdapterHelper', version: '2.9.34'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
+
+    /// fragmentation tabbar 切换 fragment
+//    implementation 'me.yokeyword:fragmentationx:1.0.1'
+//    implementation 'me.yokeyword:fragmentationx:1.0.1'
+//    implementation 'me.yokeyword:fragmentationx-swipeback:1.0.1'
+//    implementation 'me.yokeyword:eventbus-activity-scope:1.1.0'
+//    implementation 'org.greenrobot:eventbus:{version}'
+
+    implementation 'me.yokeyword:fragmentation:1.2.7'
+    implementation 'me.yokeyword:fragmentation-swipeback:1.2.7'
 }
