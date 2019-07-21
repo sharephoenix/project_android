@@ -38,6 +38,6 @@ dependencies {
 //    implementation 'me.yokeyword:eventbus-activity-scope:1.1.0'
 //    implementation 'org.greenrobot:eventbus:{version}'
 
-    implementation 'me.yokeyword:fragmentation:1.2.7'
-    implementation 'me.yokeyword:fragmentation-swipeback:1.2.7'
+//    implementation 'me.yokeyword:fragmentation:1.2.7'
+//    implementation 'me.yokeyword:fragmentation-swipeback:1.2.7'
 }
