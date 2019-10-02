@@ -1,7 +1,10 @@
 package com.example.phoenixandroid;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.os.TestLooperManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.phoenixandroid.fragments.HomeFragment;
 import com.example.phoenixandroid.fragments.MineFragment;
@@ -45,6 +49,17 @@ public class MainTabActivity extends BaseActivity {
                 showFrame(1);
             }
         });
+
+        /// 获取 activity 堆栈中的数量
+        ActivityManager managers = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.RunningTaskInfo info = managers.getRunningTasks(1).get(0);
+
+        String packageName = info.topActivity.getPackageName();
+        String topclassName = info.topActivity.getClassName();
+        String baseclassname = info.baseActivity.getClassName();
+        int acitivitynum = info.numActivities;
+        TextView textView = (TextView)findViewById(R.id.content_txt);
+        textView.setText(acitivitynum + ":::" + packageName + ":"+ topclassName + ":::" + baseclassname + ":");
 
     }
 

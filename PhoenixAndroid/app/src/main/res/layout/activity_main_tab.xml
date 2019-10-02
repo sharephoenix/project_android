@@ -16,6 +16,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_text"
         app:layout_constraintTop_toTopOf="parent">
 
+
     </FrameLayout>
     <LinearLayout
         android:id="@+id/bottom_text"
@@ -36,5 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mine"/>
+        <TextView
+            android:id="@+id/content_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="---"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
