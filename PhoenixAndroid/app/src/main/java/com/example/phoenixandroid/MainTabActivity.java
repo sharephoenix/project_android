@@ -7,12 +7,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.phoenixandroid.fragments.HomeFragment;
 import com.example.phoenixandroid.fragments.MineFragment;
 
 public class MainTabActivity extends BaseActivity {
 
+    private FragmentManager supportFragmentManager = getSupportFragmentManager();
     HomeFragment homeFragment = new HomeFragment();
     MineFragment mineFragment = new MineFragment();
 
@@ -22,9 +25,57 @@ public class MainTabActivity extends BaseActivity {
         setContentView(R.layout.activity_main_tab);
 
         setNavTitle("MainTabActivity");
-//        FragmentManager manager = getSupportFragmentManager();
-//        addFragment(mineFragment, "mine");
-//        addFragment(homeFragment, "home");
+        FragmentManager manager = getSupportFragmentManager();
+        addFragment(mineFragment, "mine");
+        addFragment(homeFragment, "home");
+
+        showFrame(0);
+
+        Button home = (Button)findViewById(R.id.home_btn);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFrame(0);
+            }
+        });
+        Button mine = (Button)findViewById(R.id.mine_btn);
+        mine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFrame(1);
+            }
+        });
+
+    }
+
+    private  void showFrame(int index) {
+        hideFrag();
+        FragmentTransaction transaction = supportFragmentManager.beginTransaction();
+        switch (index) {
+            case 0: {
+                transaction.show(homeFragment);
+                break;
+            }
+            case 1: {
+                transaction.show(mineFragment);
+                break;
+            }
+        }
+        transaction.commit();
+    }
+
+    private void hideFrag() {
+        //再重新获取一个开启事务
+        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
+        //不等于空或者是否添加的时候
+        if (homeFragment != null && homeFragment.isAdded()) {
+            fragmentTransaction.hide(homeFragment);
+        }
+        if (mineFragment != null && mineFragment.isAdded()) {
+            fragmentTransaction.hide(mineFragment);
+        }
+
+        fragmentTransaction.commit();
     }
 
     //添加Fragment到FragmentList中
